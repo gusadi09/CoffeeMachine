@@ -21,4 +21,6 @@ const handleFailed = rejectedValue => {
     console.log(rejectedValue);
 }
 
-checkStock().then(handleSuccess, handleFailed);
+checkStock()
+.then(handleSuccess)
+.catch(handleFailed);
