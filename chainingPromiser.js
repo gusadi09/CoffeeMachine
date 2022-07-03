@@ -41,11 +41,35 @@ const brewCofee = () => {
     });
 };
 
+const boilWater = () => {
+    return new Promise((resolve, reject) => {
+        console.log("Memanaskan air....");
+        setTimeout(() => {
+            resolve("Air panas siap digunakan:)");
+        }, 2000);
+    });
+};
+
+const grindCoffeeBeans = () => {
+    return new Promise((resolve, reject) => {
+        console.log("Menggiling biji kopi...");
+        setTimeout(() => {
+            resolve("Bubuk kopi sudah siap:)");
+        }, 2000)
+    })
+}
+
 function makeEspresso() {
     checkAvailability()
     .then((value) => {
         console.log(value);
         return checkStock();
+    })
+    .then((value) =>{
+        console.log(value);
+        let promises = [boilWater(), grindCoffeeBeans()];
+
+        return Promise.all(promises);
     })
     .then((value) => {
         console.log(value);
